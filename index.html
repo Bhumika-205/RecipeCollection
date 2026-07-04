@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Recipe Collection</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Recipe Collection</h1>
+    <p>Explore delicious recipes and cook step by step</p>
+    <button id="addRecipeBtn" onclick="openAddRecipeModal()">+ Add Recipe</button>
+</header>
+
+<!-- Recipe cards get rendered here by script.js -->
+<div class="recipe-container" id="recipeContainer"></div>
+
+<!-- View Recipe Modal -->
+<div class="modal" id="recipeModal">
+
+    <div class="modal-content" id="printArea">
+
+        <span class="close-btn no-print" onclick="closeModal()">&times;</span>
+
+        <h2 id="recipeTitle"></h2>
+        <p id="prepTime" class="recipe-info"></p>
+        <p id="servingSize" class="recipe-info"></p>
+
+        <div class="modal-layout">
+
+            <div class="left-panel">
+
+                <img id="recipeImage" class="modal-img" alt="">
+
+                <h3>Ingredients</h3>
+
+                <button class="small-btn no-print" onclick="toggleIngredients()">
+                    Show/Hide Ingredients
+                </button>
+
+                <div id="ingredientsSection">
+                    <ul id="ingredientsList"></ul>
+                </div>
+
+            </div>
+
+            <div class="right-panel">
+
+                <h3>Steps</h3>
+
+                <button class="small-btn no-print" onclick="toggleSteps()">Show/Hide Steps</button>
+
+                <div id="stepsSection">
+                    <ol id="stepsList"></ol>
+                </div>
+
+                <div class="controls no-print">
+
+                    <button onclick="startCooking()">
+                        Start Cooking
+                    </button>
+
+                    <button onclick="nextStep()">
+                        Next Step
+                    </button>
+
+                    <button onclick="printRecipe()">
+                        Print Recipe
+                    </button>
+
+                </div>
+
+                <div class="progress-container no-print">
+                    <div id="progressBar"></div>
+                </div>
+
+                <div id="timer" class="no-print">00:00</div>
+
+                <div id="completionMessage" class="completion-message" style="display:none;">
+                    <h3>Enjoy Your Food!</h3>
+                    <p>Recipe is complete.</p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Add Recipe Modal -->
+<div class="modal" id="addRecipeModal">
+
+    <div class="modal-content">
+
+        <span class="close-btn" onclick="closeAddRecipeModal()">&times;</span>
+
+        <h2>Add a New Recipe</h2>
+
+        <form id="addRecipeForm" onsubmit="submitRecipe(event)">
+
+            <div class="form-group">
+                <label for="inputTitle">Recipe Title</label>
+                <input type="text" id="inputTitle" placeholder="e.g. Lemon Cheesecake" required>
+            </div>
+
+            <div class="form-group">
+                <label for="inputImage">Image URL</label>
+                <input type="url" id="inputImage" placeholder="https://example.com/image.jpg">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="inputTime">Preparation Time</label>
+                    <input type="text" id="inputTime" placeholder="e.g. 30 Minutes" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputServings">Servings</label>
+                    <input type="text" id="inputServings" placeholder="e.g. 4 Servings">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputIngredients">Ingredients (one per line)</label>
+                <textarea id="inputIngredients" rows="5" placeholder="2 cups Flour&#10;1 cup Sugar&#10;2 Eggs" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="inputSteps">Steps (one per line)</label>
+                <textarea id="inputSteps" rows="5" placeholder="Preheat oven&#10;Mix ingredients&#10;Bake for 30 minutes" required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Add Recipe</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
